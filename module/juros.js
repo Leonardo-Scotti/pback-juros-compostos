@@ -8,10 +8,10 @@
 function calcularMontanteFinal(capitalInicial, taxaDeJurosAnual, jurosAoAno, tempo) {
 
     let montante
-    let p = capitalInicial
-    let r = taxaDeJurosAnual
-    let n = jurosAoAno
-    let t = tempo
+    let p = Number(capitalInicial)
+    let r = Number(taxaDeJurosAnual)
+    let n = Number(jurosAoAno)
+    let t = Number(tempo)
 
     montante = p * Math.pow((1 + (r / n)), (n * t))
 
