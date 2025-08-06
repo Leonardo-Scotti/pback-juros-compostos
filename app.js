@@ -5,6 +5,7 @@
  * Versão: 1.0
  ******************************************************************************/
 const INTEREST = require('./module/interest.js')
+const OUTPUT = require('./module/output.js')
 
 const readline = require('readline')
 
@@ -14,13 +15,13 @@ const dataEntry = readline.createInterface({
 })
 
 dataEntry.question('Digite o nome do cliente: ', function(name) {
-    let clientName = name
+    let clientName = name.toUpperCase()
 
     if (!/^[a-zA-Z\u00C0-\u017F\s'-]+$/.test(clientName)) {
         console.log('ERRO: O nome do cliente deve ser composto apenas por caracteres alfabéticos! Reinicie o programa.')
     } else {
         dataEntry.question('Digite o nome do produto: ', function(value) {
-            let productName = value
+            let productName = value.toUpperCase()
 
             dataEntry.question('Digite o Capital Inicial: R$', function(capital) {
                 let startingCapital = Number(capital)
@@ -48,7 +49,11 @@ dataEntry.question('Digite o nome do cliente: ', function(name) {
                                         if (isNaN(time)) {
                                             console.log('ERRO: Você deve digitar apenas caracteres numéricos! Reinicie o programa.')
                                         } else {
+                                            let finalAmount = INTEREST.calculateFinalAmount(startingCapital, interestRate, timesAYear, time)
 
+                                            let output = OUTPUT.dataOutput(clientName, productName, startingCapital, timesAYear, finalAmount)
+
+                                            return output
                                         }
                                     })
                                 }

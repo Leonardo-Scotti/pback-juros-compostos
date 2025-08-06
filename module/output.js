@@ -5,6 +5,7 @@
  * Versão: 1.0
  ******************************************************/
 
+//Função de mensagem de saída
 function dataOutput(clientName, productName, startingCapital, timesAYear, finalAmount) {
     let name = clientName
     let product = productName
@@ -19,4 +20,8 @@ function dataOutput(clientName, productName, startingCapital, timesAYear, finalA
     )
 
     return output
+}
+
+module.exports = {
+    dataOutput
 }
