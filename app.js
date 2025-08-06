@@ -64,7 +64,7 @@ dataEntry.question('Digite o nome do cliente: ', function(name) {
                             } else {
                                 let interestRate = INTEREST.calculateInterestPercentage(interest)
 
-                                dataEntry.question('Digite quantas vezes ele será composto por ano: ', function(times) {
+                                dataEntry.question('Digite quantas vezes ele será composto: ', function(times) {
                                     let timesAYear = Number(times)
 
                                     //Verifica se está vazio
