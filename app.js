@@ -4,11 +4,19 @@
  * Autor: Leonardo Scotti
  * Versão: 1.0
  ******************************************************************************/
+
+//Importando bibliotecas
 const INTEREST = require('./module/interest.js')
 const OUTPUT = require('./module/output.js')
 
 const readline = require('readline')
 
+//Criando constante para mensagens
+const MESSAGE_ERROR_EMPTY = 'ERRO: É obrigatório o preenchimento de todas as informações! Reinicie o programa.'
+const MESSAGE_ERROR_ALPHA_CHARACTERS = 'ERRO: Você deve digitar apenas caracteres alfabéticos! Reinicie o programa.'
+const MESSAGE_ERROR_NUM_CHARACTERS = 'ERRO: Você deve digitar apenas caracteres numéricos! Reinicie o programa.'
+
+//Criando interface do readline
 const dataEntry = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -17,40 +25,62 @@ const dataEntry = readline.createInterface({
 dataEntry.question('Digite o nome do cliente: ', function(name) {
     let clientName = name.toUpperCase()
 
-    if (!/^[a-zA-Z\u00C0-\u017F\s'-]+$/.test(clientName)) {
-        console.log('ERRO: O nome do cliente deve ser composto apenas por caracteres alfabéticos! Reinicie o programa.')
+    //Verifica se está vazio
+    if (clientName == '') {
+        console.log(MESSAGE_ERROR_EMPTY)
+
+        //Verifica se contém apenas caracteres alfabéticos
+    } else if (!/^[a-zA-Z\u00C0-\u017F\s'-]+$/.test(clientName)) {
+        console.log(MESSAGE_ERROR_ALPHA_CHARACTERS)
     } else {
         dataEntry.question('Digite o nome do produto: ', function(value) {
             let productName = value.toUpperCase()
 
-            if (!/^[a-zA-Z\u00C0-\u017F\s'-]+$/.test(clientName)) {
-                console.log('ERRO: O nome do cliente deve ser composto apenas por caracteres alfabéticos! Reinicie o programa.')
+            //Verifica se está vazio
+            if (productName == '') {
+                console.log(MESSAGE_ERROR_EMPTY)
+
+                //Verifica se contém apenas caracteres alfabéticos
+            } else if (!/^[a-zA-Z\u00C0-\u017F\s'-]+$/.test(clientName)) {
+                console.log(MESSAGE_ERROR_ALPHA_CHARACTERS)
             } else {
                 dataEntry.question('Digite o Capital Inicial: R$', function(capital) {
                     let startingCapital = Number(capital)
 
-                    if (isNaN(startingCapital)) {
-                        console.log('ERRO: Você deve digitar apenas caracteres numéricos! Reinicie o programa.')
+                    //Verifica se está vazio
+                    if (startingCapital == '') {
+                        console.log(MESSAGE_ERROR_EMPTY)
+                    } else if (isNaN(startingCapital)) {
+                        console.log(MESSAGE_ERROR_NUM_CHARACTERS)
                     } else {
                         dataEntry.question('Digite a Taxa de Juros Anual: ', function(interestValue) {
                             let interest = Number(interestValue)
 
-                            if (isNaN(interest)) {
-                                console.log('ERRO: Você deve digitar apenas caracteres numéricos! Reinicie o programa.')
+                            //Verifica se está vazio
+                            if (interest == '') {
+                                console.log(MESSAGE_ERROR_EMPTY)
+                            } else if (isNaN(interest)) {
+                                console.log(MESSAGE_ERROR_NUM_CHARACTERS)
                             } else {
                                 let interestRate = INTEREST.calculateInterestPercentage(interest)
 
                                 dataEntry.question('Digite quantas vezes ele será composto por ano: ', function(times) {
                                     let timesAYear = Number(times)
 
-                                    if (isNaN(timesAYear)) {
-                                        console.log('ERRO: Você deve digitar apenas caracteres numéricos! Reinicie o programa.')
+                                    //Verifica se está vazio
+                                    if (timesAYear == '') {
+                                        console.log(MESSAGE_ERROR_EMPTY)
+                                    } else if (isNaN(timesAYear)) {
+                                        console.log(MESSAGE_ERROR_NUM_CHARACTERS)
                                     } else {
                                         dataEntry.question('E em quantos anos? ', function(year) {
                                             let time = year
 
-                                            if (isNaN(time)) {
-                                                console.log('ERRO: Você deve digitar apenas caracteres numéricos! Reinicie o programa.')
+                                            //Verifica se está vazio
+                                            if (time == '') {
+                                                console.log(MESSAGE_ERROR_EMPTY)
+                                            } else if (isNaN(time)) {
+                                                console.log(MESSAGE_ERROR_NUM_CHARACTERS)
                                             } else {
                                                 let finalAmount = INTEREST.calculateFinalAmount(startingCapital, interestRate, timesAYear, time)
 
