@@ -5,15 +5,31 @@
  * Versão: 1.0
  ******************************************************/
 
-function calcularMontanteFinal(capitalInicial, taxaDeJurosAnual, jurosAoAno, tempo) {
+//Função que calcula o Montante Final
+function calculateFinalAmount(startingCapital, annualInterestRate, interestPerYear, time) {
 
-    let montante
-    let p = Number(capitalInicial)
-    let r = Number(taxaDeJurosAnual)
-    let n = Number(jurosAoAno)
-    let t = Number(tempo)
+    let amaount
+    let p = Number(startingCapital)
+    let r = Number(annualInterestRate)
+    let n = Number(interestPerYear)
+    let t = Number(time)
 
-    montante = p * Math.pow((1 + (r / n)), (n * t))
+    amaount = p * Math.pow((1 + (r / n)), (n * t))
 
-    return montante
+    return Number(amaount).toFixed(2)
+}
+
+//Função que transforma um número Inteiro em Porcentagem
+function calculateInterestPercentage(integerValue) {
+    let value = Number(integerValue)
+
+    let percentageValue = value / 100
+
+    return Number(percentageValue)
+}
+
+
+module.exports = {
+    calculateFinalAmount,
+    calculateInterestPercentage
 }
