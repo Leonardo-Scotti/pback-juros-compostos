@@ -39,10 +39,6 @@ dataEntry.question('Digite o nome do cliente: ', function(name) {
             //Verifica se está vazio
             if (productName == '') {
                 console.log(MESSAGE_ERROR_EMPTY)
-
-                //Verifica se contém apenas caracteres alfabéticos
-            } else if (!/^[a-zA-Z\u00C0-\u017F\s'-]+$/.test(clientName)) {
-                console.log(MESSAGE_ERROR_ALPHA_CHARACTERS)
             } else {
                 dataEntry.question('Digite o Capital Inicial: R$', function(capital) {
                     let startingCapital = Number(capital)
