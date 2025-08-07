@@ -17,6 +17,8 @@ function dataOutput(clientName, productName, startingCapital, timesAYear, finalA
         `Muito obrigado por realizar sua compra conosco Sr(a) ${name}.\n`,
         `A compra do produto ${product}, tem um valor de: R$${capital}.\n`,
         `A sua compra será parcelada em ${times} vezes e o Sr(a) pagará: R$${amount}\n`,
+        '\n',
+        `Muito obrigado por escolher a VIVA MODA.\n`,
         '*************************************************'
     )
 
