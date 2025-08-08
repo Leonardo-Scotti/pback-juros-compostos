@@ -15,6 +15,9 @@ const readline = require('readline')
 const MESSAGE_ERROR_EMPTY = 'ERRO: É obrigatório o preenchimento de todas as informações! Reinicie o programa.'
 const MESSAGE_ERROR_ALPHA_CHARACTERS = 'ERRO: Você deve digitar apenas caracteres alfabéticos! Reinicie o programa.'
 const MESSAGE_ERROR_NUM_CHARACTERS = 'ERRO: Você deve digitar apenas caracteres numéricos! Reinicie o programa.'
+const MESSAGE_ERROR_JUST_CHARACTERS = 'ERRO: Você não pode digitar apenas caracteres numéricos! Reinicie o programa.'
+const MESSAGE_ERROR_LESS_THAN = 'ERRO: Você deve digitar valores maior do que 0! Reinicie o programa.'
+const MESSAGE_ERROR_ZERO = 'ERRO: Você não pode digitar um valor menor ou igual a 0! Reinicie o programa.'
 
 //Criando interface do readline
 const dataEntry = readline.createInterface({
@@ -39,6 +42,8 @@ dataEntry.question('Digite o nome do cliente: ', function(name) {
             //Verifica se está vazio
             if (productName == '') {
                 console.log(MESSAGE_ERROR_EMPTY)
+            } else if (!isNaN(productName)) {
+                console.log(MESSAGE_ERROR_JUST_CHARACTERS)
             } else {
                 dataEntry.question('Digite o Capital Inicial: R$', function(capital) {
                     let startingCapital = Number(capital)
@@ -48,6 +53,8 @@ dataEntry.question('Digite o nome do cliente: ', function(name) {
                         console.log(MESSAGE_ERROR_EMPTY)
                     } else if (isNaN(startingCapital)) {
                         console.log(MESSAGE_ERROR_NUM_CHARACTERS)
+                    } else if (startingCapital <= 0) {
+                        console.log(MESSAGE_ERROR_LESS_THAN)
                     } else {
                         dataEntry.question('Digite a Taxa de Juros Anual: ', function(interestValue) {
                             let interest = Number(interestValue)
